@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hmdp.dto.LoginFormDTO;
 import com.hmdp.dto.Result;
 import com.hmdp.dto.UserDTO;
+import com.hmdp.entity.Shop;
 import com.hmdp.entity.User;
 import com.hmdp.mapper.UserMapper;
 import com.hmdp.service.IUserService;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -90,7 +92,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         //6.保存用户信息到redis中
         //7.随机生成token，作为登录令牌
-        String token = UUID.randomUUID().toString(true);
+        String token = UUID.randomUUID().toString(true);//true的作用是获取无符号的UUID
         //8.将用户对象转为Map
         UserDTO userDTO = BeanUtil.copyProperties(user, UserDTO.class);
         Map<String, Object> userMap = BeanUtil.beanToMap(userDTO,new HashMap<>(),
@@ -113,4 +115,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         save(user);
         return user;
     }
+
+
+
+
 }

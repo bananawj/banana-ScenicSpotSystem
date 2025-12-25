@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @TableName("tb_user")
 public class User implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;// 序列化版本号
 
     /**
      * 主键
